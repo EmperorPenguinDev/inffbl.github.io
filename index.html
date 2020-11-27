@@ -91,6 +91,24 @@
         as="script" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/4544a500bc.js" crossorigin="anonymous"></script>
     <style data-styled="" data-styled-version="5.1.1">
+        /* #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            overflow: visible;
+            background: #fff url('static/favicon.gif') no-repeat center center;
+        } */
+
+        #loader{
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: visible;
+            background: #21242d url('static/favicon.gif') no-repeat center;
+            z-index: 999;
+        }
+
         .kGdFkE {
             margin: 0 auto;
             height: 100%;
@@ -957,7 +975,10 @@
     </style>
 </head>
 
+
 <body>
+    <div id="loader"></div>
+
     <div id="__next">
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;600;700&amp;display=swap"
             rel="stylesheet" />
@@ -1055,6 +1076,35 @@
         </div>
 
     </div>
+    <script>
+        var loader;
+
+        function loadNow(opacity) {
+            if (opacity <= 0) {
+                displayContent();
+            } else {
+                loader.style.opacity = opacity;
+                window.setTimeout(function() {
+                    loadNow(opacity - 0.05);
+                }, 50);
+            }
+        }
+
+        function displayContent() {
+            loader.style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loader = document.getElementById('loader');
+            loadNow(1);
+        });
+
+        // var preloader = document.getElementById('loader');
+        // function preLoaderHandler(){
+        //     preloader.style.display = 'none';
+        // }
+    </script>
     <script id="__NEXT_DATA__" type="application/json" crossorigin="anonymous">
         {
             "props": {
